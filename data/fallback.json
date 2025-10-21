@@ -1,0 +1,7 @@
+{
+  "keywords": {
+    "ayakkabı": { "avgMonthlySearches": 10000, "avgCpc": 2, "estimatedClicks": 500 },
+    "shoes": { "avgMonthlySearches": 12000, "avgCpc": 2.5, "estimatedClicks": 600 },
+    "running shoes": { "avgMonthlySearches": 8000, "avgCpc": 2.2, "estimatedClicks": 450 }
+  }
+}

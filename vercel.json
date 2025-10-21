@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [{ "src": "next.config.js", "use": "@vercel/next" }],
+  "env": {
+    "GOOGLE_ADS_DEVELOPER_TOKEN": "@google_ads_developer_token",
+    "GOOGLE_ADS_CLIENT_ID": "@google_ads_client_id",
+    "GOOGLE_ADS_CLIENT_SECRET": "@google_ads_client_secret",
+    "GOOGLE_ADS_REFRESH_TOKEN": "@google_ads_refresh_token",
+    "GOOGLE_ADS_LOGIN_CUSTOMER_ID": "@google_ads_login_customer_id",
+    "GOOGLE_ADS_CUSTOMER_ID": "@google_ads_customer_id",
+    "GOOGLE_SHEETS_ID": "@google_sheets_id",
+    "GOOGLE_SERVICE_ACCOUNT_EMAIL": "@google_service_account_email",
+    "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY": "@google_service_account_private_key"
+  }
+}
