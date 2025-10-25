@@ -1,0 +1,166 @@
+{
+  "report": {
+    "title": "SEO Performance Dashboard - ${BRAND_NAME}",
+    "theme": {
+      "primaryColor": "${COLOR_PRIMARY}",
+      "secondaryColor": "${COLOR_SECONDARY}",
+      "accentColor": "${COLOR_ACCENT}",
+      "backgroundColor": "${COLOR_BACKGROUND}",
+      "font": "${FONT:=Inter}"
+    },
+    "layout": {
+      "pages": [
+        {
+          "name": "Overview",
+          "components": [
+            {
+              "type": "scorecard",
+              "metrics": [
+                {"name": "Total Clicks", "source": "GSC"},
+                {"name": "Total Impressions", "source": "GSC"},
+                {"name": "CTR (%)", "formula": "(Clicks / Impressions) * 100"},
+                {"name": "Avg Position", "source": "GSC"}
+              ],
+              "style": {
+                "layout": "grid-2x2",
+                "background": "#FFFFFF",
+                "borderRadius": "16px",
+                "shadow": "md"
+              }
+            },
+            {
+              "type": "timeseries",
+              "metric": "Clicks",
+              "dimension": "Date",
+              "title": "Organic Traffic Over Time",
+              "source": "GSC"
+            }
+          ]
+        },
+        {
+          "name": "Keywords",
+          "components": [
+            {
+              "type": "table",
+              "title": "Top Performing Queries",
+              "metrics": [
+                "Query",
+                "Clicks",
+                "Impressions",
+                "CTR",
+                "Average Position"
+              ],
+              "source": "GSC",
+              "style": {
+                "background": "#FFFFFF",
+                "borderRadius": "12px"
+              }
+            },
+            {
+              "type": "barchart",
+              "title": "CTR by Query",
+              "metric": "CTR",
+              "dimension": "Query",
+              "limit": 10
+            }
+          ]
+        },
+        {
+          "name": "Pages",
+          "components": [
+            {
+              "type": "table",
+              "title": "Top Pages by Clicks",
+              "metrics": [
+                "Page",
+                "Clicks",
+                "Impressions",
+                "CTR",
+                "Position"
+              ],
+              "source": "GSC"
+            },
+            {
+              "type": "timeseries",
+              "metric": "Clicks",
+              "dimension": "Page",
+              "title": "Traffic Trend by Page"
+            }
+          ]
+        },
+        {
+          "name": "Technical SEO",
+          "components": [
+            {
+              "type": "table",
+              "title": "Index Coverage Status",
+              "source": "Search Console Index",
+              "metrics": [
+                "Page URL",
+                "Status",
+                "Crawled",
+                "Indexed"
+              ]
+            },
+            {
+              "type": "barchart",
+              "title": "Core Web Vitals (LCP / CLS / FID)",
+              "metrics": ["LCP", "CLS", "FID"],
+              "source": "Web Vitals API"
+            }
+          ]
+        },
+        {
+          "name": "Segment Analysis",
+          "components": [
+            {
+              "type": "piechart",
+              "title": "Traffic by Device",
+              "metric": "Clicks",
+              "dimension": "Device"
+            },
+            {
+              "type": "geochart",
+              "title": "Traffic by Country",
+              "metric": "Clicks",
+              "dimension": "Country"
+            },
+            {
+              "type": "comparison",
+              "title": "Period-over-Period Change",
+              "metrics": [
+                "Clicks",
+                "Impressions",
+                "CTR",
+                "Position"
+              ],
+              "comparison": "previous_period"
+            }
+          ]
+        }
+      ]
+    },
+    "datasources": [
+      {
+        "id": "GSC",
+        "type": "Google Search Console",
+        "siteUrl": "${SITE_URL}",
+        "metrics": ["Clicks", "Impressions", "CTR", "Average Position"],
+        "dimensions": ["Query", "Page", "Device", "Country", "Date"]
+      },
+      {
+        "id": "GA4",
+        "type": "Google Analytics 4",
+        "propertyId": "${GA4_PROPERTY_ID:=}" ,
+        "metrics": ["Sessions", "Users", "Bounce Rate", "Avg Session Duration"],
+        "dimensions": ["Landing Page", "Device Category", "Source"]
+      },
+      {
+        "id": "Web Vitals API",
+        "type": "Custom",
+        "endpoint": "${WEB_VITALS_ENDPOINT:=}",
+        "metrics": ["LCP", "CLS", "FID"]
+      }
+    ]
+  }
+}
